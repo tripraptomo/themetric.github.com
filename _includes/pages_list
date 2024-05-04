@@ -1,0 +1,24 @@
+{% for order in (1..10) %}
+  {% for node in pages_list %}
+    {% if node.order == order %}     
+      {% if node.title == "Home" %}
+        {% if page.url == node.url %}
+          <li class="home"><a href="{{node.url}}" class="icon icon-home active"></a></li>
+        {% else %}
+          <li class="home"><a href="{{node.url}}" class="icon icon-home"></a></li>
+        {% endif %}    
+      {% else %}
+        {% if group == null or group == node.group %}
+          {% if page.url == node.url %}
+            <li><a href="{{node.url}}" class="active">{{node.title}}</a></li>
+          {% else %}
+            <li><a href="{{node.url}}">{{node.title}}</a></li>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% assign pages_list = nil %}
+{% assign group = nil %}
